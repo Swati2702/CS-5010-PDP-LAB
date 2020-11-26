@@ -19,9 +19,19 @@ public class Document {
   }
 
   public int countWords() {
+    int count = 0;
+    TextElementVisitor<Integer> wordCountVisitor = new WordCountVisitor();
+    for (TextElement textElement : content) {
+      count += textElement.accept(wordCountVisitor);
+    }
+    return count;
   }
 
-  public String toText(??? visitor) {
-
+  public <R> String toText(TextElementVisitor<R> visitor) {
+    StringBuilder stb = new StringBuilder();
+    for (TextElement textElement : content) {
+      stb.append(textElement.accept(visitor));
+    }
+    return stb.toString();
   }
 }

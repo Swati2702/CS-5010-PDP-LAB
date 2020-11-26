@@ -42,4 +42,9 @@ public class Paragraph implements TextElement {
     }
     return result.toString().trim();
   }
+
+  @Override
+  public <R> R accept(TextElementVisitor<R> visitor) {
+    return visitor.visitParagraph(this);
+  }
 }

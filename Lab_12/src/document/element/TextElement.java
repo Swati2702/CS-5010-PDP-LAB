@@ -12,6 +12,9 @@ public interface TextElement {
    */
   public String getText();
 
-  // accept method goes here...
-
+  /**
+   * Making the elements of the document "visitable" by adding the following method
+   * to the TextElement interface, and implementing it in the implementing.
+   * */
+  public <R> R accept(TextElementVisitor<R> visitor);
 }

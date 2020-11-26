@@ -21,4 +21,9 @@ public class BasicText implements TextElement {
   public String getText() {
     return text;
   }
+
+  @Override
+  public <R> R accept(TextElementVisitor<R> visitor) {
+    return visitor.visitBasicText(this);
+  }
 }
