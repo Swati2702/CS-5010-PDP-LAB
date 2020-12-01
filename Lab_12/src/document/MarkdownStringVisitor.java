@@ -1,5 +1,7 @@
 package document;
 
+import java.util.List;
+
 import document.element.BasicText;
 import document.element.BoldText;
 import document.element.Heading;
@@ -8,15 +10,19 @@ import document.element.ItalicText;
 import document.element.Paragraph;
 import document.element.TextElementVisitor;
 
+
+/**
+ * Hello.
+ * */
 public class MarkdownStringVisitor implements TextElementVisitor<String> {
   @Override
   public  String visitBasicText(BasicText current) {
-    return current.getText() + "\n";
+    return current.getText().trim() + "\n";
   }
 
   @Override
   public String visitBoldText(BoldText current) {
-    return "**" + current.getText() + "**\n";
+    return "**" + current.getText().trim() + "**\n";
   }
 
   @Override
@@ -28,22 +34,35 @@ public class MarkdownStringVisitor implements TextElementVisitor<String> {
       case 2: s.append("## ");
       break;
       case 3: s.append("### ");
+      break;
+      default: s.append(" ");
     }
-    return s.append(current.getText()).append("\n").toString();
+    //s.append("# ");
+    return s.append(current.getText().trim()).append("\n").toString();
   }
 
   @Override
   public String visitHyperText(HyperText current) {
-    return "[title](" + current.getText() + ")\n";
+    return "[title](" + current.getText().trim() + ")\n";
   }
 
   @Override
   public String visitItalicText(ItalicText current) {
-    return "*" + current.getText() + "*\n";
+    return "*" + current.getText().trim() + "*\n";
   }
 
   @Override
   public String visitParagraph(Paragraph current) {
-    return "> " + current.getText() + "\n";
+
+    StringBuilder s = new StringBuilder();
+    //s.append("> ");
+    s.append("\n");
+    List<BasicText> list = current.getContent();
+    for (BasicText b : list ) {
+      s.append(b.accept(this));
+    }
+    s.append("\n");
+    return s.toString();
+
   }
 }

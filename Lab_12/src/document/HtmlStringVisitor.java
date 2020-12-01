@@ -1,5 +1,7 @@
 package document;
 
+import java.util.List;
+
 import document.element.BasicText;
 import document.element.BoldText;
 import document.element.Heading;
@@ -8,37 +10,46 @@ import document.element.ItalicText;
 import document.element.Paragraph;
 import document.element.TextElementVisitor;
 
+/**
+ * Hello.
+ * */
 public class HtmlStringVisitor implements TextElementVisitor<String> {
 
   @Override
   public  String visitBasicText(BasicText current) {
-    return  current.getText();
+    return  current.getText().trim() + "\n";
   }
 
   @Override
   public String visitBoldText(BoldText current) {
-    return "<b>" +  current.getText() + "</b>\n";
+    return "<b>" +  current.getText().trim() + "</b>\n";
   }
 
   @Override
   public String visitHeading(Heading current) {
     int level = current.getLevel();
-    return String.format("<h%d>", level) + current.getText() + String.format("</h%d>", level)
-            + "\n";
+    return "<h" + level + ">" + current.getText().trim() + "</h" + level + ">\n";
   }
 
   @Override
   public String visitHyperText(HyperText current) {
-    return "<a href=\"" + current.getUrl() + "\">" + current.getText() + "</a>\n";
+    return "<a href=\"" + current.getUrl() + "\">" + current.getText().trim() + "</a>\n";
   }
 
   @Override
   public String visitItalicText(ItalicText current) {
-    return "<i>" + current.getText() + "</i>\n";
+    return "<i>" + current.getText().trim() + "</i>\n";
   }
 
   @Override
   public String visitParagraph(Paragraph current) {
-    return "<p>" +  current.getText() + "</p>\n";
+    StringBuilder s = new StringBuilder();
+    s.append("<p>");
+    List<BasicText> list = current.getContent();
+    for (BasicText b : list ) {
+      s.append(b.accept(this));
+    }
+    s.append("</p>\n");
+    return s.toString();
   }
 }

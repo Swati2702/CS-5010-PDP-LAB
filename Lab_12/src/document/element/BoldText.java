@@ -12,4 +12,9 @@ public class BoldText extends BasicText {
   public BoldText(String text) {
     super(text);
   }
+
+  @Override
+  public <R> R accept(TextElementVisitor<R> visitor) {
+    return visitor.visitBoldText(this);
+  }
 }

@@ -27,4 +27,9 @@ public class HyperText extends BasicText {
   public String getUrl() {
     return url;
   }
+
+  @Override
+  public <R> R accept(TextElementVisitor<R> visitor) {
+    return visitor.visitHyperText(this);
+  }
 }

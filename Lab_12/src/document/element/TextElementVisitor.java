@@ -1,5 +1,8 @@
 package document.element;
 
+/**
+ * Hello.
+ * */
 public interface TextElementVisitor<R> {
   
   R visitBasicText(BasicText current);

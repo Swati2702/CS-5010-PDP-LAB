@@ -1,5 +1,8 @@
 package document.element;
 
+/**
+ * Hello.
+ * */
 public class Heading extends BasicText {
 
   /** The level of this heading. */
@@ -22,4 +25,10 @@ public class Heading extends BasicText {
   public int getLevel() {
     return level;
   }
- }
+
+  @Override
+  public <R> R accept(TextElementVisitor<R> visitor) {
+    return visitor.visitHeading(this);
+  }
+
+}
