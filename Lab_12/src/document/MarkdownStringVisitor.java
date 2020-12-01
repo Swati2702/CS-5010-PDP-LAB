@@ -37,7 +37,6 @@ public class MarkdownStringVisitor implements TextElementVisitor<String> {
       break;
       default: s.append(" ");
     }
-    //s.append("# ");
     return s.append(current.getText().trim()).append("\n").toString();
   }
 
@@ -55,7 +54,6 @@ public class MarkdownStringVisitor implements TextElementVisitor<String> {
   public String visitParagraph(Paragraph current) {
 
     StringBuilder s = new StringBuilder();
-    //s.append("> ");
     s.append("\n");
     List<BasicText> list = current.getContent();
     for (BasicText b : list ) {

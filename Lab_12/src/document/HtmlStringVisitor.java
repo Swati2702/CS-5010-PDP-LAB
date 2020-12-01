@@ -33,7 +33,7 @@ public class HtmlStringVisitor implements TextElementVisitor<String> {
 
   @Override
   public String visitHyperText(HyperText current) {
-    return "<a href=\"" + current.getUrl() + "\">" + current.getText().trim() + "</a>\n";
+    return "<a href=\"" + current.getUrl().trim() + "\">" + current.getText().trim() + "</a>\n";
   }
 
   @Override

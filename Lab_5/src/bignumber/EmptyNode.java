@@ -1,6 +1,10 @@
 package bignumber;
 
+/**
+ * Element Node.
+ * */
 public class EmptyNode implements ListOfDigits {
+
   @Override
   public int count() {
     return 0;
@@ -8,41 +12,54 @@ public class EmptyNode implements ListOfDigits {
 
   @Override
   public int countHelp(int acc) {
-    return 0;
+    return acc;
   }
 
   @Override
-  public int length() {
-    return 0;
-  }
-
-  @Override
-  public BigNumber shiftLeft(int shifts) {
-    return null;
-  }
-
-  @Override
-  public BigNumber shiftRight(int shifts) {
-    return null;
-  }
-
-  @Override
-  public BigNumber addDigit(int digit) throws IllegalArgumentException {
-    return null;
+  public void addDigit(int digit) {
+    throw new IllegalArgumentException("invalid");
   }
 
   @Override
   public int getDigitAt(int position) {
-    return 0;
+    throw new IllegalArgumentException("invalid");
   }
 
   @Override
-  public BigNumber copy() {
+  public int getDigitAtHelp(int acc, int position) {
+    throw new IllegalArgumentException("invalid");
+  }
+
+  @Override
+  public ListOfDigits add(ListOfDigits that, int carry) {
+    if (that instanceof EmptyNode) {
+      return new ElementNode(carry, this);
+    }
+    else {
+      if (carry != 0) {
+        that.addDigit(carry);
+      }
+      return that;
+    }
+  }
+
+  @Override
+  public ListOfDigits getLod() {
     return null;
   }
 
   @Override
-  public BigNumber add(BigNumber that) {
+  public int getDigit() {
+    throw new IllegalArgumentException("invalid");
+  }
+
+  @Override
+  public ListOfDigits getRest() {
     return null;
+  }
+
+  @Override
+  public String toString() {
+    return "";
   }
 }
