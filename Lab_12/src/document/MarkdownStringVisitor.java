@@ -43,7 +43,7 @@ public class MarkdownStringVisitor implements TextElementVisitor<String> {
 
   @Override
   public String visitHyperText(HyperText current) {
-    return "[title](" + current.getText().trim() + ")\n";
+    return "[" + current.getText().trim() + "](" + current.getUrl().trim() + ")\n";
   }
 
   @Override
