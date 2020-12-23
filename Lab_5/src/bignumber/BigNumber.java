@@ -1,6 +1,8 @@
 package bignumber;
 
-public interface BigNumber {
+/**
+ * Big Number.*/
+public interface BigNumber extends Comparable<BigNumber> {
 
   /**
    *  Returns the number of digits in this number.
@@ -9,7 +11,8 @@ public interface BigNumber {
 
   /**
    * Takes the number of shifts as an argument and shifts this number to the
-   * left by that number. A negative number of left-shifts will correspond to those many right shifts.
+   * left by that number. A negative number of left-shifts will correspond to those
+   * many right shifts.
    * */
   void shiftLeft(int shifts);
 
@@ -47,5 +50,9 @@ public interface BigNumber {
    * */
   BigNumber add( BigNumber that);
 
+  /**
+   * Gets lod.
+   * */
+  ListOfDigits getLod();
 
 }

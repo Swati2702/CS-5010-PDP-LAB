@@ -22,32 +22,13 @@ public interface ListOfDigits {
    */
   int countHelp(int acc);
 
-  /**
-   *  Returns the number of digits in this number.
-   * */
-  int length();
-
-  /**
-   * Takes the number of shifts as an argument and shifts this number to the
-   * left by that number. A negative number of left-shifts will correspond to those many right shifts.
-   * */
-  BigNumber shiftLeft(int shifts);
-
-  /**
-   * takes the number of shifts as an argument and shifts this number
-   * to the right by that number. The number 0 can be right-shifted any positive
-   * number of times, yielding the same number 0. A negative number of right-shifts
-   * will correspond to those many left shifts.
-   * */
-  BigNumber shiftRight(int shifts);
 
   /**
    * Takes a position as an argument and returns the digit at that position. Positions start at 0
-   * (rightmost digit). This method throws an IllegalArgumentException if an invalid position
-   * is passed.
+   * (rightmost digit).
    *
    */
-  BigNumber addDigit(int digit) throws IllegalArgumentException;
+  void addDigit(int digit);
 
   /**
    * Takes a position as an argument and returns the digit at that position. Positions start at 0
@@ -57,15 +38,18 @@ public interface ListOfDigits {
   int getDigitAt(int position);
 
   /**
-   * Returns an identical and independent copy of this number.
+   * Helper for the getDigitAt method.
+   * Takes a position as an argument and returns the digit at that position. Positions start at 0
+   * (rightmost digit). This method throws an IllegalArgumentException if an invalid
+   * position is passed.
    * */
-  BigNumber copy();
+  int getDigitAtHelp(int acc, int position);
 
   /**
    * Takes another BigNumber and
    * returns the sum of these two numbers. This operation does not change either number.
    * */
-  BigNumber add( BigNumber that);
+  ListOfDigits add( ListOfDigits that, int carry);
 
   /**
    * Create and return a string that can be used to print this list.
@@ -74,4 +58,12 @@ public interface ListOfDigits {
    */
   String toString();
 
+  /**
+   * Return lod.
+   * */
+  ListOfDigits getLod();
+
+  int getDigit();
+
+  ListOfDigits getRest();
 }
